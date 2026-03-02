@@ -1,7 +1,7 @@
 /* empty css                                 */
 import { d as createAstro, c as createComponent, m as maybeRenderHead, g as addAttribute, b as renderTemplate, r as renderComponent, i as defineScriptVars } from '../chunks/astro/server_suRLM8Uk.mjs';
 import 'kleur/colors';
-import { $ as $$Layout } from '../chunks/Layout_A_DR7axz.mjs';
+import { $ as $$Layout } from '../chunks/Layout_eun_OgDC.mjs';
 import { jsxs, jsx } from 'react/jsx-runtime';
 import { useState, useEffect } from 'react';
 import 'clsx';

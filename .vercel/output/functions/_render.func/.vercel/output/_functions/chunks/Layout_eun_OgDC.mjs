@@ -6,7 +6,7 @@ import { useState } from 'react';
 
 function DonationButton() {
   const [isOpen, setIsOpen] = useState(false);
-  const pixKey = "seu-email-ou-telefone@aqui.com";
+  const pixKey = "63638300000110";
   const copyPix = () => {
     navigator.clipboard.writeText(pixKey);
     alert("Chave PIX copiada! Obrigado pelo apoio! ❤️");
