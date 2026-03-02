@@ -3,70 +3,18 @@ import Layout from '../layouts/Layout.astro';
 import CourseCard from '../components/CourseCard.astro';
 import AdBanner from '../components/AdBanner.astro';
 
-import { GoogleGenAI } from '@google/genai';
-
 // Carregar cursos do JSON
 import coursesData from '../data/cursos.json';
 const { cursos, ultima_atualizacao, total_cursos } = coursesData;
 
-let displayCourses = [...cursos];
-let aiSearchTerm = Astro.url.searchParams.get('ai_search');
-let aiError = null;
-
-if (aiSearchTerm) {
-  try {
-    const apiKey = import.meta.env.GEMINI_API_KEY || process.env.GEMINI_API_KEY;
-    if (apiKey) {
-      const ai = new GoogleGenAI({ apiKey });
-      const prompt = `
-        O usuário buscou por um curso relacionado a: "${aiSearchTerm}".
-        Você é um curador educacional especialista (EduBot Pro).
-        Sua missão é encontrar 1 a 3 cursos EXCELENTES, GRATUITOS e COM CERTIFICADO sobre este tema.
-
-        REGRAS CRÍTICAS:
-        1. Os cursos DEVEM ser 100% gratuitos para acessar e estudar.
-        2. O \`link\` NÃO DEVE ser apenas a página inicial. DEVE ser o link direto para a página do curso específico.
-        3. A \`imagem\` DEVE ser uma URL do Unsplash (ex: https://images.unsplash.com/photo-...).
-        4. A \`categoria\` DEVE ser exatamente "Hard Skill" ou "Soft Skill".
-        
-        Gere a sua resposta puramente no seguinte formato JSON (sem markdown, apenas o array de objetos):
-        [
-          {
-            "id": "gerado_agora_${Date.now()}",
-            "titulo": "Nome do Curso",
-            "instituicao": "Instituição",
-            "link": "https://url-especifica",
-            "categoria": "Hard Skill",
-            "tags": ["Tag1"],
-            "descricao": "Pequena descrição...",
-            "certificado_gratuito": true,
-            "imagem": "https://images.unsplash.com/photo-exemplo?w=800&h=400&fit=crop"
-          }
-        ]
-      `;
-      const response = await ai.models.generateContent({
-        model: 'gemini-2.5-flash',
-        contents: prompt,
-        config: {
-          temperature: 0.3,
-          responseMimeType: "application/json",
-        }
-      });
-      const generatedCourses = JSON.parse(response.text);
-      displayCourses = [...generatedCourses, ...displayCourses];
-    }
-  } catch (err) {
-    console.error("Erro na busca por IA:", err);
-    aiError = "Não foi possível gerar cursos com IA no momento. Tente novamente.";
-  }
-}
-
 // Estatísticas
-const hardSkillsCount = displayCourses.filter(c => c.categoria === 'Hard Skill').length;
-const softSkillsCount = displayCourses.filter(c => c.categoria === 'Soft Skill').length;
+const hardSkillsCount = cursos.filter(c => c.categoria === 'Hard Skill').length;
+const
+
+ softSkillsCount = cursos.filter(c => c.categoria === 'Soft Skill').length;
 
 // Categorias únicas para filtros (extrair de tags)
-const allTags = displayCourses.flatMap(c => c.tags);
+const allTags = cursos.flatMap(c => c.tags);
 const uniqueCategories = [...new Set(allTags)].sort().slice(0, 10); // Top 10 categorias
 ---
 
@@ -115,7 +63,6 @@ const uniqueCategories = [...new Set(allTags)].sort().slice(0, 10); // Top 10 ca
           <input
             type="text"
             id="searchInput"
-            value={aiSearchTerm || ""}
             placeholder="Buscar por curso, instituição ou tag..."
             class="block w-full pl-10 pr-3 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-sm bg-slate-50 focus:bg-white transition-colors"
           />
@@ -165,33 +112,21 @@ const uniqueCategories = [...new Set(allTags)].sort().slice(0, 10); // Top 10 ca
   
   <!-- Courses Grid -->
   <div id="coursesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-    {displayCourses.map((curso) => (
+    {cursos.map((curso) => (
       <CourseCard curso={curso} />
     ))}
   </div>
   
   <!-- Empty State -->
-  <div id="emptyState" class={`text-center py-16 ${aiSearchTerm && displayCourses.length === cursos.length ? 'block' : 'hidden'}`}>
-    <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-slate-100 text-slate-400 mb-6">
-      <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-      </svg>
-    </div>
-    <h3 class="text-xl font-bold text-slate-800 mb-2">Nenhum curso encontrado na base principal</h3>
-    <p class="text-slate-600 mb-8 max-w-md mx-auto">
-      {aiError ? aiError : "Ainda não catalogamos Cursos para essa busca exata. Deseja que a Inteligência Artificial procure na internet e faça uma curadoria em tempo real para você?"}
-    </p>
-    <div class="flex items-center justify-center gap-4">
-      <button id="resetFilters" class="px-5 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-sm font-medium rounded-lg transition-colors">
-        Limpar Filtros
-      </button>
-      <button id="aiSearchButton" class="px-5 py-2.5 bg-primary hover:bg-primary-hover shadow-lg shadow-primary/20 text-white text-sm font-semibold rounded-lg transition-all flex items-center hover:-translate-y-0.5">
-        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-        </svg>
-        Buscar com Inteligência Artificial
-      </button>
-    </div>
+  <div id="emptyState" class="hidden text-center py-16">
+    <svg class="w-20 h-20 text-slate-300 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+    </svg>
+    <h3 class="text-lg font-bold text-slate-900 mb-2">Nenhum curso encontrado</h3>
+    <p class="text-slate-600 mb-4">Tente ajustar seus filtros ou termo de busca.</p>
+    <button id="resetFilters" class="px-4 py-2 bg-primary hover:bg-primary-hover text-white text-sm font-medium rounded-lg transition-colors">
+      Limpar Filtros
+    </button>
   </div>
   
   <!-- Ad Banner Bottom (Disabled) -->
@@ -209,11 +144,11 @@ const uniqueCategories = [...new Set(allTags)].sort().slice(0, 10); // Top 10 ca
   </div>
 </Layout>
 
-<script define:vars={{ displayCourses }}>
+<script define:vars={{ cursos }}>
   // Estado global de filtros
-  let allCourses = displayCourses;
+  let allCourses = cursos;
   let currentFilter = 'all';
-  let currentSearch = document.getElementById('searchInput')?.value || '';
+  let currentSearch = '';
   let currentCategoryFilter = null;
   
   function applyFilters() {
@@ -343,19 +278,6 @@ const uniqueCategories = [...new Set(allTags)].sort().slice(0, 10); // Top 10 ca
     const resetBtn = document.getElementById('resetFilters');
     if (resetBtn) {
       resetBtn.addEventListener('click', resetFilters);
-    }
-
-    // AI Search Trigger
-    const aiSearchBtn = document.getElementById('aiSearchButton');
-    if (aiSearchBtn) {
-      aiSearchBtn.addEventListener('click', () => {
-        const query = document.getElementById('searchInput').value.trim();
-        if (query) {
-          aiSearchBtn.innerHTML = '<span class="flex items-center"><svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> Garimpando cursos...</span>';
-          aiSearchBtn.disabled = true;
-          window.location.href = `/?ai_search=${encodeURIComponent(query)}`;
-        }
-      });
     }
   });
 </script>
