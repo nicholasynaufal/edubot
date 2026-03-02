@@ -1,10 +1,10 @@
 /* empty css                                 */
 import { d as createAstro, c as createComponent, r as renderComponent, b as renderTemplate, m as maybeRenderHead } from '../chunks/astro/server_suRLM8Uk.mjs';
 import 'kleur/colors';
-import { $ as $$Layout } from '../chunks/Layout_eun_OgDC.mjs';
+import { $ as $$Layout } from '../chunks/Layout_BG4BAArA.mjs';
 export { renderers } from '../renderers.mjs';
 
-const $$Astro = createAstro("https://edubot-pro.vercel.app");
+const $$Astro = createAstro("https://edubot-murex.vercel.app");
 const $$Sobre = createComponent(($$result, $$props, $$slots) => {
   const Astro2 = $$result.createAstro($$Astro, $$props, $$slots);
   Astro2.self = $$Sobre;

@@ -5,7 +5,7 @@ import vercel from '@astrojs/vercel/serverless';
 
 // https://astro.build/config
 export default defineConfig({
-    site: 'https://edubot-pro.vercel.app',
+    site: 'https://edubot-murex.vercel.app',
     integrations: [tailwind(), react()],
     output: 'server',
     adapter: vercel({

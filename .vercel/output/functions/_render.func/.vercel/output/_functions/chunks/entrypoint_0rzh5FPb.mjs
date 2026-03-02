@@ -3,7 +3,7 @@ import { R as ROUTE_TYPE_HEADER, p as REROUTE_DIRECTIVE_HEADER, A as AstroError,
 import { f as appendForwardSlash, j as joinPaths, t as trimSlashes, g as removeTrailingForwardSlash, h as fileExtension, s as slash, p as prependForwardSlash } from './astro/assets-service_CWWE8_Z3.mjs';
 import { serialize, parse } from 'cookie';
 import { bold, red, yellow, dim, blue } from 'kleur/colors';
-import { g as getActionQueryString, d as deserializeActionResult, e as ensure404Route, D as DEFAULT_404_ROUTE, a as default404Instance, N as NOOP_MIDDLEWARE_FN } from './astro-designed-error-pages_DcsY73FE.mjs';
+import { g as getActionQueryString, d as deserializeActionResult, e as ensure404Route, D as DEFAULT_404_ROUTE, a as default404Instance, N as NOOP_MIDDLEWARE_FN } from './astro-designed-error-pages_CarjdFIU.mjs';
 import 'es-module-lexer';
 import 'clsx';
 import 'fast-glob';

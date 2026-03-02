@@ -1,7 +1,7 @@
 /* empty css                                 */
 import { d as createAstro, c as createComponent, m as maybeRenderHead, g as addAttribute, b as renderTemplate, r as renderComponent, i as defineScriptVars } from '../chunks/astro/server_suRLM8Uk.mjs';
 import 'kleur/colors';
-import { $ as $$Layout } from '../chunks/Layout_eun_OgDC.mjs';
+import { $ as $$Layout } from '../chunks/Layout_BG4BAArA.mjs';
 import { jsxs, jsx } from 'react/jsx-runtime';
 import { useState, useEffect } from 'react';
 import 'clsx';
@@ -108,7 +108,7 @@ function CourseInteractions({ courseId }) {
   ] });
 }
 
-const $$Astro$2 = createAstro("https://edubot-pro.vercel.app");
+const $$Astro$2 = createAstro("https://edubot-murex.vercel.app");
 const $$CourseCard = createComponent(($$result, $$props, $$slots) => {
   const Astro2 = $$result.createAstro($$Astro$2, $$props, $$slots);
   Astro2.self = $$CourseCard;
@@ -131,7 +131,7 @@ var __freeze$1 = Object.freeze;
 var __defProp$1 = Object.defineProperty;
 var __template$1 = (cooked, raw) => __freeze$1(__defProp$1(cooked, "raw", { value: __freeze$1(cooked.slice()) }));
 var _a$1;
-const $$Astro$1 = createAstro("https://edubot-pro.vercel.app");
+const $$Astro$1 = createAstro("https://edubot-murex.vercel.app");
 const $$AdBanner = createComponent(($$result, $$props, $$slots) => {
   const Astro2 = $$result.createAstro($$Astro$1, $$props, $$slots);
   Astro2.self = $$AdBanner;
@@ -1860,7 +1860,7 @@ var __freeze = Object.freeze;
 var __defProp = Object.defineProperty;
 var __template = (cooked, raw) => __freeze(__defProp(cooked, "raw", { value: __freeze(raw || cooked.slice()) }));
 var _a;
-const $$Astro = createAstro("https://edubot-pro.vercel.app");
+const $$Astro = createAstro("https://edubot-murex.vercel.app");
 const $$Index = createComponent(async ($$result, $$props, $$slots) => {
   const Astro2 = $$result.createAstro($$Astro, $$props, $$slots);
   Astro2.self = $$Index;
