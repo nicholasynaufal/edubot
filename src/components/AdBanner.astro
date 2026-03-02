@@ -5,7 +5,8 @@ interface Props {
   adSlot?: string;
 }
 
-const { enabled = false, position = 'top', adSlot } = Astro.props;
+const { enabled = false, position = 'top', adSlot = '' } = Astro.props;
+const adClient = import.meta.env.PUBLIC_ADSENSE_CLIENT || '';
 
 // Não renderiza se disabled
 if (!enabled) {
@@ -13,44 +14,48 @@ if (!enabled) {
 }
 ---
 
-<div class={`
-  ad-banner-container
-  ${position === 'sidebar' ? 'lg:sticky lg:top-24' : ''}
-  ${position === 'top' ? 'mb-8' : 'mt-8'}
-`}>
-  <div class="bg-neutral-100 border border-neutral-200 rounded-lg p-4 text-center">
-    <!-- Placeholder para Google AdSense -->
-    <div class="flex flex-col items-center justify-center min-h-[120px] text-neutral-500">
-      <svg class="w-12 h-12 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z" />
-      </svg>
-      <p class="text-xs font-mono">Ad Space</p>
+{adClient ? (
+  <!-- Google AdSense Real -->
+  <div class={`
+    ad-banner-container
+    ${position === 'sidebar' ? 'lg:sticky lg:top-24' : ''}
+    ${position === 'top' ? 'mb-8' : 'mt-8'}
+  `}>
+    <div class="bg-white border border-slate-200 rounded-lg p-2 text-center overflow-hidden">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client={adClient}
+           data-ad-slot={adSlot}
+           data-ad-format="auto"
+           data-full-width-responsive="true">
+      </ins>
+      <script is:inline>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
     </div>
-    
-    <!-- Quando tiver AdSense, descomentar: -->
-    <!--
-    <ins class="adsbygoogle"
-         style="display:block"
-         data-ad-client="ca-pub-XXXXXXXXXX"
-         data-ad-slot={adSlot}
-         data-ad-format="auto"
-         data-full-width-responsive="true">
-    </ins>
-    <script>
-      (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
-    -->
+    <p class="text-[10px] text-slate-400 text-center mt-1">Publicidade</p>
   </div>
-  
-  <p class="text-xs text-neutral-400 text-center mt-2">Publicidade</p>
-</div>
+) : (
+  <!-- Placeholder quando não tem AdSense configurado -->
+  <div class={`
+    ad-banner-container
+    ${position === 'sidebar' ? 'lg:sticky lg:top-24' : ''}
+    ${position === 'top' ? 'mb-8' : 'mt-8'}
+  `}>
+    <div class="bg-gradient-to-r from-slate-50 to-slate-100 border border-slate-200 rounded-lg p-4 text-center">
+      <div class="flex flex-col items-center justify-center min-h-[90px] text-slate-400">
+        <svg class="w-8 h-8 mb-1.5 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z" />
+        </svg>
+        <p class="text-[10px] font-mono opacity-60">Espaço Publicitário</p>
+        <p class="text-[9px] text-slate-300 mt-0.5">Configure PUBLIC_ADSENSE_CLIENT nas variáveis de ambiente</p>
+      </div>
+    </div>
+  </div>
+)}
 
 <style>
   .ad-banner-container {
     transition: opacity 0.3s ease;
-  }
-  
-  .ad-banner-container:hover {
-    opacity: 0.9;
   }
 </style>
