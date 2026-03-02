@@ -1,7 +1,7 @@
 /* empty css                                 */
-import { c as createAstro, b as createComponent, d as renderComponent, r as renderTemplate, m as maybeRenderHead } from '../chunks/astro/server_D3jevMZl.mjs';
+import { d as createAstro, c as createComponent, r as renderComponent, b as renderTemplate, m as maybeRenderHead } from '../chunks/astro/server_suRLM8Uk.mjs';
 import 'kleur/colors';
-import { $ as $$Layout } from '../chunks/Layout_BQPa9ey0.mjs';
+import { $ as $$Layout } from '../chunks/Layout_A_DR7axz.mjs';
 export { renderers } from '../renderers.mjs';
 
 const $$Astro = createAstro("https://edubot-pro.vercel.app");

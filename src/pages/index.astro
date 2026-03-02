@@ -26,10 +26,11 @@ if (aiSearchTerm) {
         REGRAS CRÍTICAS:
         1. Os cursos DEVEM ser 100% gratuitos para acessar e estudar.
         2. O \`link\` NÃO DEVE ser apenas a página inicial. DEVE ser o link direto para a página do curso específico.
-        3. A \`imagem\` DEVE ser uma URL do Unsplash (ex: https://images.unsplash.com/photo-...).
+        3. A \`imagem\` DEVE ser uma URL do Unsplash.
         4. A \`categoria\` DEVE ser exatamente "Hard Skill" ou "Soft Skill".
+        5. VOCÊ DEVE RECOMENDAR UM LIVRO DA AMAZON RELACIONADO. O link deve ser de busca da Amazon para facilitar a conversão de afiliados.
         
-        Gere a sua resposta puramente no seguinte formato JSON (sem markdown, apenas o array de objetos):
+        Gere a resposta no seguinte formato JSON estrito:
         [
           {
             "id": "gerado_agora_${Date.now()}",
@@ -40,7 +41,11 @@ if (aiSearchTerm) {
             "tags": ["Tag1"],
             "descricao": "Pequena descrição...",
             "certificado_gratuito": true,
-            "imagem": "https://images.unsplash.com/photo-exemplo?w=800&h=400&fit=crop"
+            "imagem": "https://images.unsplash.com/photo-exemplo?w=800&h=400&fit=crop",
+            "livro_recomendado": {
+               "titulo": "Nome do Melhor Livro sobre o Assunto",
+               "link_amazon": "https://www.amazon.com.br/s?k=nome+do+livro&tag=SEU_TRACKING_ID"
+            }
           }
         ]
       `;
@@ -98,8 +103,8 @@ const uniqueCategories = [...new Set(allTags)].sort().slice(0, 10); // Top 10 ca
     </div>
   </div>
   
-  <!--  Ad Banner (Disabled) -->
-  <AdBanner enabled={false} position="top" />
+  <!--  Ad Banner -->
+  <AdBanner enabled={true} position="top" />
   
   <!-- Advanced Filter Bar -->
   <div class="bg-white border border-slate-200 rounded-lg p-6 mb-8 shadow-sm">
@@ -194,8 +199,8 @@ const uniqueCategories = [...new Set(allTags)].sort().slice(0, 10); // Top 10 ca
     </div>
   </div>
   
-  <!-- Ad Banner Bottom (Disabled) -->
-  <AdBanner enabled={false} position="bottom" />
+  <!-- Ad Banner Bottom -->
+  <AdBanner enabled={true} position="bottom" />
   
   <!-- Last Update -->
   <div class="mt-12 text-center text-sm text-slate-500">

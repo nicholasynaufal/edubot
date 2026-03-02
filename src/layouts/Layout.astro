@@ -1,5 +1,6 @@
 ---
 import { Analytics } from '@vercel/analytics/react';
+import DonationButton from '../components/DonationButton.jsx';
 
 interface Props {
   title: string;
@@ -128,6 +129,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
         </div>
       </div>
     </footer>
+    <DonationButton client:load />
     <Analytics client:load />
   </body>
 </html>

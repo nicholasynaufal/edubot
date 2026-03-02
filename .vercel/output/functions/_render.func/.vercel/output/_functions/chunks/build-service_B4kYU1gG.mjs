@@ -1,4 +1,4 @@
-import { b as baseService } from './astro/assets-service_BynfXlnh.mjs';
+import { b as baseService } from './astro/assets-service_CWWE8_Z3.mjs';
 import '../pages/_image.astro.mjs';
 
 function isESMImportedImage(src) {

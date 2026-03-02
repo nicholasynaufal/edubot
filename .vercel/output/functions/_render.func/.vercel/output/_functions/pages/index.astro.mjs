@@ -1,11 +1,12 @@
 /* empty css                                 */
-import { c as createAstro, b as createComponent, m as maybeRenderHead, g as addAttribute, r as renderTemplate, d as renderComponent, i as defineScriptVars } from '../chunks/astro/server_D3jevMZl.mjs';
+import { d as createAstro, c as createComponent, m as maybeRenderHead, g as addAttribute, b as renderTemplate, r as renderComponent, i as defineScriptVars } from '../chunks/astro/server_suRLM8Uk.mjs';
 import 'kleur/colors';
-import { $ as $$Layout } from '../chunks/Layout_BQPa9ey0.mjs';
+import { $ as $$Layout } from '../chunks/Layout_A_DR7axz.mjs';
 import { jsxs, jsx } from 'react/jsx-runtime';
 import { useState, useEffect } from 'react';
 import 'clsx';
 /* empty css                                 */
+import { GoogleGenAI } from '@google/genai';
 export { renderers } from '../renderers.mjs';
 
 function CourseInteractions({ courseId }) {
@@ -107,9 +108,9 @@ function CourseInteractions({ courseId }) {
   ] });
 }
 
-const $$Astro$1 = createAstro("https://edubot-pro.vercel.app");
+const $$Astro$2 = createAstro("https://edubot-pro.vercel.app");
 const $$CourseCard = createComponent(($$result, $$props, $$slots) => {
-  const Astro2 = $$result.createAstro($$Astro$1, $$props, $$slots);
+  const Astro2 = $$result.createAstro($$Astro$2, $$props, $$slots);
   Astro2.self = $$CourseCard;
   const { curso } = Astro2.props;
   const linkFinal = curso.link_afiliado || curso.link;
@@ -117,7 +118,7 @@ const $$CourseCard = createComponent(($$result, $$props, $$slots) => {
         px-3 py-1 text-xs font-mono font-medium rounded-full
         ${curso.categoria === "Hard Skill" ? "bg-primary text-white shadow-sm" : "bg-success text-white shadow-sm"}
       `, "class")}> ${curso.categoria === "Hard Skill" ? "\u{1F4BB} Hard Skill" : "\u{1F9E0} Soft Skill"} </span> </div> </div> <!-- Content --> <div class="p-6"> <div class="mb-4"> <h3 class="text-lg font-bold text-slate-800 mb-2 line-clamp-2 group-hover:text-primary transition-colors"> ${curso.titulo} </h3> <p class="text-sm text-slate-600 flex items-center"> <svg class="w-4 h-4 mr-1.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path> </svg> ${curso.instituicao} </p> </div> <p class="text-sm text-slate-700 mb-4 line-clamp-2"> ${curso.descricao} </p> <!-- Tags --> <div class="flex flex-wrap gap-2 mb-4"> ${curso.tags.slice(0, 3).map((tag) => renderTemplate`<span class="px-2.5 py-1 text-xs font-mono bg-slate-100 text-slate-700 rounded-md hover:bg-slate-200 transition-colors">
-#${tag} </span>`)} </div> <!-- Footer --> <div class="flex items-center justify-between pt-4 border-t border-slate-100"> ${curso.certificado_gratuito ? renderTemplate`<span class="flex items-center text-xs font-medium text-success"> <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path> </svg>
+#${tag} </span>`)} </div> <!-- Livro Recomendado (Afiliado) --> ${curso.livro_recomendado && renderTemplate`<div class="mb-4 mt-2 p-3 bg-indigo-50/50 border border-indigo-100 rounded-lg"> <div class="flex items-start"> <svg class="w-5 h-5 text-indigo-500 mr-2 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path> </svg> <div> <span class="text-[10px] font-bold tracking-wider text-indigo-600 uppercase block mb-1">Aprofunde-se no tema</span> <a${addAttribute(curso.livro_recomendado.link_amazon, "href")} target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-slate-800 hover:text-indigo-600 line-clamp-1 transition-colors" title="Comprar livro na Amazon"> ${curso.livro_recomendado.titulo} </a> </div> </div> </div>`} <!-- Footer --> <div class="flex items-center justify-between pt-4 border-t border-slate-100"> ${curso.certificado_gratuito ? renderTemplate`<span class="flex items-center text-xs font-medium text-success"> <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path> </svg>
 Certificado Grátis
 </span>` : renderTemplate`<span class="flex items-center text-xs font-medium text-amber-600"> <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path> </svg>
 Certificado Pago
@@ -130,9 +131,9 @@ var __freeze$1 = Object.freeze;
 var __defProp$1 = Object.defineProperty;
 var __template$1 = (cooked, raw) => __freeze$1(__defProp$1(cooked, "raw", { value: __freeze$1(cooked.slice()) }));
 var _a$1;
-const $$Astro = createAstro("https://edubot-pro.vercel.app");
+const $$Astro$1 = createAstro("https://edubot-pro.vercel.app");
 const $$AdBanner = createComponent(($$result, $$props, $$slots) => {
-  const Astro2 = $$result.createAstro($$Astro, $$props, $$slots);
+  const Astro2 = $$result.createAstro($$Astro$1, $$props, $$slots);
   Astro2.self = $$AdBanner;
   const { enabled = false, position = "top", adSlot } = Astro2.props;
   if (!enabled) {
@@ -1859,34 +1860,391 @@ var __freeze = Object.freeze;
 var __defProp = Object.defineProperty;
 var __template = (cooked, raw) => __freeze(__defProp(cooked, "raw", { value: __freeze(raw || cooked.slice()) }));
 var _a;
-const $$Index = createComponent(($$result, $$props, $$slots) => {
+const $$Astro = createAstro("https://edubot-pro.vercel.app");
+const $$Index = createComponent(async ($$result, $$props, $$slots) => {
+  const Astro2 = $$result.createAstro($$Astro, $$props, $$slots);
+  Astro2.self = $$Index;
   const { cursos, ultima_atualizacao, total_cursos } = coursesData;
-  const hardSkillsCount = cursos.filter((c) => c.categoria === "Hard Skill").length;
-  const softSkillsCount = cursos.filter((c) => c.categoria === "Soft Skill").length;
-  const allTags = cursos.flatMap((c) => c.tags);
+  let displayCourses = [...cursos];
+  let aiSearchTerm = Astro2.url.searchParams.get("ai_search");
+  let aiError = null;
+  if (aiSearchTerm) {
+    try {
+      const apiKey = "AIzaSyAdfRb17TNTFu_htPvnZlw1OG8TkfwN26w";
+      if (apiKey) {
+        const ai = new GoogleGenAI({ apiKey });
+        const prompt = `
+        O usuário buscou por um curso relacionado a: "${aiSearchTerm}".
+        Você é um curador educacional especialista (EduBot Pro).
+        Sua missão é encontrar 1 a 3 cursos EXCELENTES, GRATUITOS e COM CERTIFICADO sobre este tema.
+
+        REGRAS CRÍTICAS:
+        1. Os cursos DEVEM ser 100% gratuitos para acessar e estudar.
+        2. O \`link\` NÃO DEVE ser apenas a página inicial. DEVE ser o link direto para a página do curso específico.
+        3. A \`imagem\` DEVE ser uma URL do Unsplash.
+        4. A \`categoria\` DEVE ser exatamente "Hard Skill" ou "Soft Skill".
+        5. VOCÊ DEVE RECOMENDAR UM LIVRO DA AMAZON RELACIONADO. O link deve ser de busca da Amazon para facilitar a conversão de afiliados.
+        
+        Gere a resposta no seguinte formato JSON estrito:
+        [
+          {
+            "id": "gerado_agora_${Date.now()}",
+            "titulo": "Nome do Curso",
+            "instituicao": "Instituição",
+            "link": "https://url-especifica",
+            "categoria": "Hard Skill",
+            "tags": ["Tag1"],
+            "descricao": "Pequena descrição...",
+            "certificado_gratuito": true,
+            "imagem": "https://images.unsplash.com/photo-exemplo?w=800&h=400&fit=crop",
+            "livro_recomendado": {
+               "titulo": "Nome do Melhor Livro sobre o Assunto",
+               "link_amazon": "https://www.amazon.com.br/s?k=nome+do+livro&tag=SEU_TRACKING_ID"
+            }
+          }
+        ]
+      `;
+        const response = await ai.models.generateContent({
+          model: "gemini-2.5-flash",
+          contents: prompt,
+          config: {
+            temperature: 0.3,
+            responseMimeType: "application/json"
+          }
+        });
+        const generatedCourses = JSON.parse(response.text);
+        displayCourses = [...generatedCourses, ...displayCourses];
+      }
+    } catch (err) {
+      console.error("Erro na busca por IA:", err);
+      aiError = "Não foi possível gerar cursos com IA no momento. Tente novamente.";
+    }
+  }
+  const hardSkillsCount = displayCourses.filter((c) => c.categoria === "Hard Skill").length;
+  const softSkillsCount = displayCourses.filter((c) => c.categoria === "Soft Skill").length;
+  const allTags = displayCourses.flatMap((c) => c.tags);
   const uniqueCategories = [...new Set(allTags)].sort().slice(0, 10);
-  return renderTemplate(_a || (_a = __template(["", " <script>(function(){", "\n  // Estado global de filtros\n  let allCourses = cursos;\n  let currentFilter = 'all';\n  let currentSearch = '';\n  let currentCategoryFilter = null;\n  \n  function applyFilters() {\n    const filtered = allCourses.filter(curso => {\n      // 1. Filtro de categoria (Hard/Soft/All)\n      const categoryMatch = currentFilter === 'all' ||\n        (currentFilter === 'hard' && curso.categoria === 'Hard Skill') ||\n        (currentFilter === 'soft' && curso.categoria === 'Soft Skill');\n      \n      if (!categoryMatch) return false;\n      \n      // 2. Filtro por tag de categoria espec\xEDfica\n      if (currentCategoryFilter) {\n        if (!curso.tags.includes(currentCategoryFilter)) return false;\n      }\n      \n      // 3. Filtro de busca textual\n      if (currentSearch) {\n        const searchable = [\n          curso.titulo,\n          curso.instituicao,\n          curso.descricao,\n          ...curso.tags\n        ].join(' ').toLowerCase();\n        \n        if (!searchable.includes(currentSearch.toLowerCase())) return false;\n      }\n      \n      return true;\n    });\n    \n    updateDisplay(filtered);\n  }\n  \n  function updateDisplay(filtered) {\n    const grid = document.getElementById('coursesGrid');\n    const emptyState = document.getElementById('emptyState');\n    const counter = document.getElementById('courseCount');\n    \n    if (filtered.length === 0) {\n      grid.classList.add('hidden');\n      emptyState.classList.remove('hidden');\n      counter.textContent = 'Nenhum curso encontrado';\n    } else {\n      grid.classList.remove('hidden');\n      emptyState.classList.add('hidden');\n      counter.textContent = `${filtered.length} de ${allCourses.length} cursos`;\n      \n      // Show/hide cards\n      const allCards = grid.querySelectorAll('article');\n      allCards.forEach((card) => {\n        const id = card.dataset.id;\n        const isVisible = filtered.some(c => c.id === id);\n        card.style.display = isVisible ? 'block' : 'none';\n      });\n    }\n  }\n  \n  function resetFilters() {\n    currentFilter = 'all';\n    currentSearch = '';\n    currentCategoryFilter = null;\n    \n    // Reset UI\n    document.getElementById('searchInput').value = '';\n    document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));\n    document.querySelector('[data-filter=\"all\"]').classList.add('active');\n    document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active'));\n    \n    applyFilters();\n  }\n  \n  // Event Listeners\n  window.addEventListener('DOMContentLoaded', () => {\n    applyFilters();\n    \n    // Search input\n    const searchInput = document.getElementById('searchInput');\n    searchInput.addEventListener('input', (e) => {\n      currentSearch = e.target.value.trim();\n      applyFilters();\n    });\n    \n    // Primary filter buttons\n    document.querySelectorAll('.filter-btn').forEach(btn => {\n      btn.addEventListener('click', (e) => {\n        const target = e.currentTarget;\n        const filter = target.dataset.filter;\n        \n        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));\n        target.classList.add('active');\n        \n        currentFilter = filter;\n        applyFilters();\n      });\n    });\n    \n    // Category filter buttons\n    document.querySelectorAll('.category-btn').forEach(btn => {\n      btn.addEventListener('click', (e) => {\n        const target = e.currentTarget;\n        const category = target.dataset.categoryFilter;\n        \n        // Toggle category filter\n        if (currentCategoryFilter === category) {\n          currentCategoryFilter = null;\n          target.classList.remove('active', 'bg-primary', 'text-white', 'border-primary');\n          target.classList.add('bg-slate-100', 'text-slate-700');\n        } else {\n          // Remove active from all\n          document.querySelectorAll('.category-btn').forEach(b => {\n            b.classList.remove('active', 'bg-primary', 'text-white', 'border-primary');\n            b.classList.add('bg-slate-100', 'text-slate-700');\n          });\n          \n          // Activate clicked\n          currentCategoryFilter = category;\n          target.classList.add('active', 'bg-primary', 'text-white', 'border-primary');\n          target.classList.remove('bg-slate-100', 'text-slate-700');\n        }\n        \n        applyFilters();\n      });\n    });\n    \n    // Reset button\n    const resetBtn = document.getElementById('resetFilters');\n    if (resetBtn) {\n      resetBtn.addEventListener('click', resetFilters);\n    }\n  });\n})();<\/script> "], ["", " <script>(function(){", "\n  // Estado global de filtros\n  let allCourses = cursos;\n  let currentFilter = 'all';\n  let currentSearch = '';\n  let currentCategoryFilter = null;\n  \n  function applyFilters() {\n    const filtered = allCourses.filter(curso => {\n      // 1. Filtro de categoria (Hard/Soft/All)\n      const categoryMatch = currentFilter === 'all' ||\n        (currentFilter === 'hard' && curso.categoria === 'Hard Skill') ||\n        (currentFilter === 'soft' && curso.categoria === 'Soft Skill');\n      \n      if (!categoryMatch) return false;\n      \n      // 2. Filtro por tag de categoria espec\xEDfica\n      if (currentCategoryFilter) {\n        if (!curso.tags.includes(currentCategoryFilter)) return false;\n      }\n      \n      // 3. Filtro de busca textual\n      if (currentSearch) {\n        const searchable = [\n          curso.titulo,\n          curso.instituicao,\n          curso.descricao,\n          ...curso.tags\n        ].join(' ').toLowerCase();\n        \n        if (!searchable.includes(currentSearch.toLowerCase())) return false;\n      }\n      \n      return true;\n    });\n    \n    updateDisplay(filtered);\n  }\n  \n  function updateDisplay(filtered) {\n    const grid = document.getElementById('coursesGrid');\n    const emptyState = document.getElementById('emptyState');\n    const counter = document.getElementById('courseCount');\n    \n    if (filtered.length === 0) {\n      grid.classList.add('hidden');\n      emptyState.classList.remove('hidden');\n      counter.textContent = 'Nenhum curso encontrado';\n    } else {\n      grid.classList.remove('hidden');\n      emptyState.classList.add('hidden');\n      counter.textContent = \\`\\${filtered.length} de \\${allCourses.length} cursos\\`;\n      \n      // Show/hide cards\n      const allCards = grid.querySelectorAll('article');\n      allCards.forEach((card) => {\n        const id = card.dataset.id;\n        const isVisible = filtered.some(c => c.id === id);\n        card.style.display = isVisible ? 'block' : 'none';\n      });\n    }\n  }\n  \n  function resetFilters() {\n    currentFilter = 'all';\n    currentSearch = '';\n    currentCategoryFilter = null;\n    \n    // Reset UI\n    document.getElementById('searchInput').value = '';\n    document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));\n    document.querySelector('[data-filter=\"all\"]').classList.add('active');\n    document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active'));\n    \n    applyFilters();\n  }\n  \n  // Event Listeners\n  window.addEventListener('DOMContentLoaded', () => {\n    applyFilters();\n    \n    // Search input\n    const searchInput = document.getElementById('searchInput');\n    searchInput.addEventListener('input', (e) => {\n      currentSearch = e.target.value.trim();\n      applyFilters();\n    });\n    \n    // Primary filter buttons\n    document.querySelectorAll('.filter-btn').forEach(btn => {\n      btn.addEventListener('click', (e) => {\n        const target = e.currentTarget;\n        const filter = target.dataset.filter;\n        \n        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));\n        target.classList.add('active');\n        \n        currentFilter = filter;\n        applyFilters();\n      });\n    });\n    \n    // Category filter buttons\n    document.querySelectorAll('.category-btn').forEach(btn => {\n      btn.addEventListener('click', (e) => {\n        const target = e.currentTarget;\n        const category = target.dataset.categoryFilter;\n        \n        // Toggle category filter\n        if (currentCategoryFilter === category) {\n          currentCategoryFilter = null;\n          target.classList.remove('active', 'bg-primary', 'text-white', 'border-primary');\n          target.classList.add('bg-slate-100', 'text-slate-700');\n        } else {\n          // Remove active from all\n          document.querySelectorAll('.category-btn').forEach(b => {\n            b.classList.remove('active', 'bg-primary', 'text-white', 'border-primary');\n            b.classList.add('bg-slate-100', 'text-slate-700');\n          });\n          \n          // Activate clicked\n          currentCategoryFilter = category;\n          target.classList.add('active', 'bg-primary', 'text-white', 'border-primary');\n          target.classList.remove('bg-slate-100', 'text-slate-700');\n        }\n        \n        applyFilters();\n      });\n    });\n    \n    // Reset button\n    const resetBtn = document.getElementById('resetFilters');\n    if (resetBtn) {\n      resetBtn.addEventListener('click', resetFilters);\n    }\n  });\n})();<\/script> "])), renderComponent($$result, "Layout", $$Layout, { "title": "Cursos Gratuitos com Certifica\xE7\xE3o", "data-astro-cid-j7pv25f6": true }, { "default": ($$result2) => renderTemplate`  ${maybeRenderHead()}<div class="text-center mb-12" data-astro-cid-j7pv25f6> <h1 class="text-4xl md:text-5xl font-bold text-slate-900 mb-4" data-astro-cid-j7pv25f6>
+  return renderTemplate(_a || (_a = __template(["", " <script>(function(){", `
+  // Estado global de filtros
+  let allCourses = displayCourses;
+  let currentFilter = 'all';
+  let currentSearch = document.getElementById('searchInput')?.value || '';
+  let currentCategoryFilter = null;
+  
+  function applyFilters() {
+    const filtered = allCourses.filter(curso => {
+      // 1. Filtro de categoria (Hard/Soft/All)
+      const categoryMatch = currentFilter === 'all' ||
+        (currentFilter === 'hard' && curso.categoria === 'Hard Skill') ||
+        (currentFilter === 'soft' && curso.categoria === 'Soft Skill');
+      
+      if (!categoryMatch) return false;
+      
+      // 2. Filtro por tag de categoria específica
+      if (currentCategoryFilter) {
+        if (!curso.tags.includes(currentCategoryFilter)) return false;
+      }
+      
+      // 3. Filtro de busca textual
+      if (currentSearch) {
+        const searchable = [
+          curso.titulo,
+          curso.instituicao,
+          curso.descricao,
+          ...curso.tags
+        ].join(' ').toLowerCase();
+        
+        if (!searchable.includes(currentSearch.toLowerCase())) return false;
+      }
+      
+      return true;
+    });
+    
+    updateDisplay(filtered);
+  }
+  
+  function updateDisplay(filtered) {
+    const grid = document.getElementById('coursesGrid');
+    const emptyState = document.getElementById('emptyState');
+    const counter = document.getElementById('courseCount');
+    
+    if (filtered.length === 0) {
+      grid.classList.add('hidden');
+      emptyState.classList.remove('hidden');
+      counter.textContent = 'Nenhum curso encontrado';
+    } else {
+      grid.classList.remove('hidden');
+      emptyState.classList.add('hidden');
+      counter.textContent = \`\${filtered.length} de \${allCourses.length} cursos\`;
+      
+      // Show/hide cards
+      const allCards = grid.querySelectorAll('article');
+      allCards.forEach((card) => {
+        const id = card.dataset.id;
+        const isVisible = filtered.some(c => c.id === id);
+        card.style.display = isVisible ? 'block' : 'none';
+      });
+    }
+  }
+  
+  function resetFilters() {
+    currentFilter = 'all';
+    currentSearch = '';
+    currentCategoryFilter = null;
+    
+    // Reset UI
+    document.getElementById('searchInput').value = '';
+    document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+    document.querySelector('[data-filter="all"]').classList.add('active');
+    document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active'));
+    
+    applyFilters();
+  }
+  
+  // Event Listeners
+  window.addEventListener('DOMContentLoaded', () => {
+    applyFilters();
+    
+    // Search input
+    const searchInput = document.getElementById('searchInput');
+    searchInput.addEventListener('input', (e) => {
+      currentSearch = e.target.value.trim();
+      applyFilters();
+    });
+    
+    // Primary filter buttons
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const target = e.currentTarget;
+        const filter = target.dataset.filter;
+        
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        target.classList.add('active');
+        
+        currentFilter = filter;
+        applyFilters();
+      });
+    });
+    
+    // Category filter buttons
+    document.querySelectorAll('.category-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const target = e.currentTarget;
+        const category = target.dataset.categoryFilter;
+        
+        // Toggle category filter
+        if (currentCategoryFilter === category) {
+          currentCategoryFilter = null;
+          target.classList.remove('active', 'bg-primary', 'text-white', 'border-primary');
+          target.classList.add('bg-slate-100', 'text-slate-700');
+        } else {
+          // Remove active from all
+          document.querySelectorAll('.category-btn').forEach(b => {
+            b.classList.remove('active', 'bg-primary', 'text-white', 'border-primary');
+            b.classList.add('bg-slate-100', 'text-slate-700');
+          });
+          
+          // Activate clicked
+          currentCategoryFilter = category;
+          target.classList.add('active', 'bg-primary', 'text-white', 'border-primary');
+          target.classList.remove('bg-slate-100', 'text-slate-700');
+        }
+        
+        applyFilters();
+      });
+    });
+    
+    // Reset button
+    const resetBtn = document.getElementById('resetFilters');
+    if (resetBtn) {
+      resetBtn.addEventListener('click', resetFilters);
+    }
+
+    // AI Search Trigger
+    const aiSearchBtn = document.getElementById('aiSearchButton');
+    if (aiSearchBtn) {
+      aiSearchBtn.addEventListener('click', () => {
+        const query = document.getElementById('searchInput').value.trim();
+        if (query) {
+          aiSearchBtn.innerHTML = '<span class="flex items-center"><svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> Garimpando cursos...</span>';
+          aiSearchBtn.disabled = true;
+          window.location.href = \`/?ai_search=\${encodeURIComponent(query)}\`;
+        }
+      });
+    }
+  });
+})();</script> `], ["", " <script>(function(){", `
+  // Estado global de filtros
+  let allCourses = displayCourses;
+  let currentFilter = 'all';
+  let currentSearch = document.getElementById('searchInput')?.value || '';
+  let currentCategoryFilter = null;
+  
+  function applyFilters() {
+    const filtered = allCourses.filter(curso => {
+      // 1. Filtro de categoria (Hard/Soft/All)
+      const categoryMatch = currentFilter === 'all' ||
+        (currentFilter === 'hard' && curso.categoria === 'Hard Skill') ||
+        (currentFilter === 'soft' && curso.categoria === 'Soft Skill');
+      
+      if (!categoryMatch) return false;
+      
+      // 2. Filtro por tag de categoria específica
+      if (currentCategoryFilter) {
+        if (!curso.tags.includes(currentCategoryFilter)) return false;
+      }
+      
+      // 3. Filtro de busca textual
+      if (currentSearch) {
+        const searchable = [
+          curso.titulo,
+          curso.instituicao,
+          curso.descricao,
+          ...curso.tags
+        ].join(' ').toLowerCase();
+        
+        if (!searchable.includes(currentSearch.toLowerCase())) return false;
+      }
+      
+      return true;
+    });
+    
+    updateDisplay(filtered);
+  }
+  
+  function updateDisplay(filtered) {
+    const grid = document.getElementById('coursesGrid');
+    const emptyState = document.getElementById('emptyState');
+    const counter = document.getElementById('courseCount');
+    
+    if (filtered.length === 0) {
+      grid.classList.add('hidden');
+      emptyState.classList.remove('hidden');
+      counter.textContent = 'Nenhum curso encontrado';
+    } else {
+      grid.classList.remove('hidden');
+      emptyState.classList.add('hidden');
+      counter.textContent = \\\`\\\${filtered.length} de \\\${allCourses.length} cursos\\\`;
+      
+      // Show/hide cards
+      const allCards = grid.querySelectorAll('article');
+      allCards.forEach((card) => {
+        const id = card.dataset.id;
+        const isVisible = filtered.some(c => c.id === id);
+        card.style.display = isVisible ? 'block' : 'none';
+      });
+    }
+  }
+  
+  function resetFilters() {
+    currentFilter = 'all';
+    currentSearch = '';
+    currentCategoryFilter = null;
+    
+    // Reset UI
+    document.getElementById('searchInput').value = '';
+    document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+    document.querySelector('[data-filter="all"]').classList.add('active');
+    document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active'));
+    
+    applyFilters();
+  }
+  
+  // Event Listeners
+  window.addEventListener('DOMContentLoaded', () => {
+    applyFilters();
+    
+    // Search input
+    const searchInput = document.getElementById('searchInput');
+    searchInput.addEventListener('input', (e) => {
+      currentSearch = e.target.value.trim();
+      applyFilters();
+    });
+    
+    // Primary filter buttons
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const target = e.currentTarget;
+        const filter = target.dataset.filter;
+        
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        target.classList.add('active');
+        
+        currentFilter = filter;
+        applyFilters();
+      });
+    });
+    
+    // Category filter buttons
+    document.querySelectorAll('.category-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const target = e.currentTarget;
+        const category = target.dataset.categoryFilter;
+        
+        // Toggle category filter
+        if (currentCategoryFilter === category) {
+          currentCategoryFilter = null;
+          target.classList.remove('active', 'bg-primary', 'text-white', 'border-primary');
+          target.classList.add('bg-slate-100', 'text-slate-700');
+        } else {
+          // Remove active from all
+          document.querySelectorAll('.category-btn').forEach(b => {
+            b.classList.remove('active', 'bg-primary', 'text-white', 'border-primary');
+            b.classList.add('bg-slate-100', 'text-slate-700');
+          });
+          
+          // Activate clicked
+          currentCategoryFilter = category;
+          target.classList.add('active', 'bg-primary', 'text-white', 'border-primary');
+          target.classList.remove('bg-slate-100', 'text-slate-700');
+        }
+        
+        applyFilters();
+      });
+    });
+    
+    // Reset button
+    const resetBtn = document.getElementById('resetFilters');
+    if (resetBtn) {
+      resetBtn.addEventListener('click', resetFilters);
+    }
+
+    // AI Search Trigger
+    const aiSearchBtn = document.getElementById('aiSearchButton');
+    if (aiSearchBtn) {
+      aiSearchBtn.addEventListener('click', () => {
+        const query = document.getElementById('searchInput').value.trim();
+        if (query) {
+          aiSearchBtn.innerHTML = '<span class="flex items-center"><svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> Garimpando cursos...</span>';
+          aiSearchBtn.disabled = true;
+          window.location.href = \\\`/?ai_search=\\\${encodeURIComponent(query)}\\\`;
+        }
+      });
+    }
+  });
+})();</script> `])), renderComponent($$result, "Layout", $$Layout, { "title": "Cursos Gratuitos com Certificação", "data-astro-cid-j7pv25f6": true }, { "default": async ($$result2) => renderTemplate`  ${maybeRenderHead()}<div class="text-center mb-12" data-astro-cid-j7pv25f6> <h1 class="text-4xl md:text-5xl font-bold text-slate-900 mb-4" data-astro-cid-j7pv25f6>
 Cursos Profissionais <span class="text-primary" data-astro-cid-j7pv25f6>100% Gratuitos</span> </h1> <p class="text-lg text-slate-600 max-w-2xl mx-auto mb-8" data-astro-cid-j7pv25f6>
 Curadoria inteligente via IA em <strong data-astro-cid-j7pv25f6>19 áreas de mercado</strong>. 
       Validação rigorosa. Qualidade sobre quantidade.
-</p> <!-- Stats --> <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-3xl mx-auto mb-12" data-astro-cid-j7pv25f6> <div class="bg-white border border-slate-200 rounded-lg p-6 shadow-sm hover:shadow transition-shadow" data-astro-cid-j7pv25f6> <div class="text-3xl font-bold text-primary mb-1" data-astro-cid-j7pv25f6>${total_cursos}</div> <div class="text-sm text-slate-600 font-medium" data-astro-cid-j7pv25f6>Cursos Validados</div> </div> <div class="bg-white border border-slate-200 rounded-lg p-6 shadow-sm hover:shadow transition-shadow" data-astro-cid-j7pv25f6> <div class="text-3xl font-bold text-primary mb-1" data-astro-cid-j7pv25f6>${hardSkillsCount}</div> <div class="text-sm text-slate-600 font-medium" data-astro-cid-j7pv25f6>Hard Skills</div> </div> <div class="bg-white border border-slate-200 rounded-lg p-6 shadow-sm hover:shadow transition-shadow" data-astro-cid-j7pv25f6> <div class="text-3xl font-bold text-success mb-1" data-astro-cid-j7pv25f6>${softSkillsCount}</div> <div class="text-sm text-slate-600 font-medium" data-astro-cid-j7pv25f6>Soft Skills</div> </div> </div> </div>  ${renderComponent($$result2, "AdBanner", $$AdBanner, { "enabled": false, "position": "top", "data-astro-cid-j7pv25f6": true })}  <div class="bg-white border border-slate-200 rounded-lg p-6 mb-8 shadow-sm" data-astro-cid-j7pv25f6> <div class="flex flex-col gap-4" data-astro-cid-j7pv25f6> <!-- Search Input --> <div class="flex-1" data-astro-cid-j7pv25f6> <div class="relative" data-astro-cid-j7pv25f6> <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none" data-astro-cid-j7pv25f6> <svg class="h-5 w-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" data-astro-cid-j7pv25f6> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" data-astro-cid-j7pv25f6></path> </svg> </div> <input type="text" id="searchInput" placeholder="Buscar por curso, instituição ou tag..." class="block w-full pl-10 pr-3 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-sm bg-slate-50 focus:bg-white transition-colors" data-astro-cid-j7pv25f6> </div> </div> <!-- Primary Filters --> <div class="flex flex-wrap gap-2" data-astro-cid-j7pv25f6> <button data-filter="all" class="filter-btn active px-4 py-2 text-sm font-medium rounded-lg transition-all border" data-astro-cid-j7pv25f6>
+</p> <!-- Stats --> <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-3xl mx-auto mb-12" data-astro-cid-j7pv25f6> <div class="bg-white border border-slate-200 rounded-lg p-6 shadow-sm hover:shadow transition-shadow" data-astro-cid-j7pv25f6> <div class="text-3xl font-bold text-primary mb-1" data-astro-cid-j7pv25f6>${total_cursos}</div> <div class="text-sm text-slate-600 font-medium" data-astro-cid-j7pv25f6>Cursos Validados</div> </div> <div class="bg-white border border-slate-200 rounded-lg p-6 shadow-sm hover:shadow transition-shadow" data-astro-cid-j7pv25f6> <div class="text-3xl font-bold text-primary mb-1" data-astro-cid-j7pv25f6>${hardSkillsCount}</div> <div class="text-sm text-slate-600 font-medium" data-astro-cid-j7pv25f6>Hard Skills</div> </div> <div class="bg-white border border-slate-200 rounded-lg p-6 shadow-sm hover:shadow transition-shadow" data-astro-cid-j7pv25f6> <div class="text-3xl font-bold text-success mb-1" data-astro-cid-j7pv25f6>${softSkillsCount}</div> <div class="text-sm text-slate-600 font-medium" data-astro-cid-j7pv25f6>Soft Skills</div> </div> </div> </div>  ${renderComponent($$result2, "AdBanner", $$AdBanner, { "enabled": true, "position": "top", "data-astro-cid-j7pv25f6": true })}  <div class="bg-white border border-slate-200 rounded-lg p-6 mb-8 shadow-sm" data-astro-cid-j7pv25f6> <div class="flex flex-col gap-4" data-astro-cid-j7pv25f6> <!-- Search Input --> <div class="flex-1" data-astro-cid-j7pv25f6> <div class="relative" data-astro-cid-j7pv25f6> <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none" data-astro-cid-j7pv25f6> <svg class="h-5 w-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" data-astro-cid-j7pv25f6> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" data-astro-cid-j7pv25f6></path> </svg> </div> <input type="text" id="searchInput"${addAttribute(aiSearchTerm || "", "value")} placeholder="Buscar por curso, instituição ou tag..." class="block w-full pl-10 pr-3 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-sm bg-slate-50 focus:bg-white transition-colors" data-astro-cid-j7pv25f6> </div> </div> <!-- Primary Filters --> <div class="flex flex-wrap gap-2" data-astro-cid-j7pv25f6> <button data-filter="all" class="filter-btn active px-4 py-2 text-sm font-medium rounded-lg transition-all border" data-astro-cid-j7pv25f6>
 📚 Todos
 </button> <button data-filter="hard" class="filter-btn px-4 py-2 text-sm font-medium rounded-lg transition-all border" data-astro-cid-j7pv25f6>
 💻 Hard Skills
 </button> <button data-filter="soft" class="filter-btn px-4 py-2 text-sm font-medium rounded-lg transition-all border" data-astro-cid-j7pv25f6>
 🧠 Soft Skills
 </button> <div class="h-8 w-px bg-slate-300 mx-2" data-astro-cid-j7pv25f6></div> <!-- Category Tags --> ${uniqueCategories.slice(0, 5).map((category) => renderTemplate`<button${addAttribute(category, "data-category-filter")} class="category-btn px-3 py-2 text-xs font-mono bg-slate-100 text-slate-700 rounded-md hover:bg-slate-200 transition-colors border border-transparent hover:border-slate-300" data-astro-cid-j7pv25f6>
-#${category} </button>`)} </div> <!-- Results Counter --> <div class="text-sm text-slate-600 font-medium" data-astro-cid-j7pv25f6> <span id="courseCount" data-astro-cid-j7pv25f6>Carregando...</span> </div> </div> </div>  <div id="coursesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" data-astro-cid-j7pv25f6> ${cursos.map((curso) => renderTemplate`${renderComponent($$result2, "CourseCard", $$CourseCard, { "curso": curso, "data-astro-cid-j7pv25f6": true })}`)} </div>  <div id="emptyState" class="hidden text-center py-16" data-astro-cid-j7pv25f6> <svg class="w-20 h-20 text-slate-300 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" data-astro-cid-j7pv25f6> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" data-astro-cid-j7pv25f6></path> </svg> <h3 class="text-lg font-bold text-slate-900 mb-2" data-astro-cid-j7pv25f6>Nenhum curso encontrado</h3> <p class="text-slate-600 mb-4" data-astro-cid-j7pv25f6>Tente ajustar seus filtros ou termo de busca.</p> <button id="resetFilters" class="px-4 py-2 bg-primary hover:bg-primary-hover text-white text-sm font-medium rounded-lg transition-colors" data-astro-cid-j7pv25f6>
+#${category} </button>`)} </div> <!-- Results Counter --> <div class="text-sm text-slate-600 font-medium" data-astro-cid-j7pv25f6> <span id="courseCount" data-astro-cid-j7pv25f6>Carregando...</span> </div> </div> </div>  <div id="coursesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" data-astro-cid-j7pv25f6> ${displayCourses.map((curso) => renderTemplate`${renderComponent($$result2, "CourseCard", $$CourseCard, { "curso": curso, "data-astro-cid-j7pv25f6": true })}`)} </div>  <div id="emptyState"${addAttribute(`text-center py-16 ${aiSearchTerm && displayCourses.length === cursos.length ? "block" : "hidden"}`, "class")} data-astro-cid-j7pv25f6> <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-slate-100 text-slate-400 mb-6" data-astro-cid-j7pv25f6> <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" data-astro-cid-j7pv25f6> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" data-astro-cid-j7pv25f6></path> </svg> </div> <h3 class="text-xl font-bold text-slate-800 mb-2" data-astro-cid-j7pv25f6>Nenhum curso encontrado na base principal</h3> <p class="text-slate-600 mb-8 max-w-md mx-auto" data-astro-cid-j7pv25f6> ${aiError ? aiError : "Ainda não catalogamos Cursos para essa busca exata. Deseja que a Inteligência Artificial procure na internet e faça uma curadoria em tempo real para você?"} </p> <div class="flex items-center justify-center gap-4" data-astro-cid-j7pv25f6> <button id="resetFilters" class="px-5 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-sm font-medium rounded-lg transition-colors" data-astro-cid-j7pv25f6>
 Limpar Filtros
-</button> </div>  ${renderComponent($$result2, "AdBanner", $$AdBanner, { "enabled": false, "position": "bottom", "data-astro-cid-j7pv25f6": true })}  <div class="mt-12 text-center text-sm text-slate-500" data-astro-cid-j7pv25f6> <p data-astro-cid-j7pv25f6>Última atualização: ${new Date(ultima_atualizacao).toLocaleDateString("pt-BR", {
+</button> <button id="aiSearchButton" class="px-5 py-2.5 bg-primary hover:bg-primary-hover shadow-lg shadow-primary/20 text-white text-sm font-semibold rounded-lg transition-all flex items-center hover:-translate-y-0.5" data-astro-cid-j7pv25f6> <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" data-astro-cid-j7pv25f6> <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" data-astro-cid-j7pv25f6></path> </svg>
+Buscar com Inteligência Artificial
+</button> </div> </div>  ${renderComponent($$result2, "AdBanner", $$AdBanner, { "enabled": true, "position": "bottom", "data-astro-cid-j7pv25f6": true })}  <div class="mt-12 text-center text-sm text-slate-500" data-astro-cid-j7pv25f6> <p data-astro-cid-j7pv25f6>Última atualização: ${new Date(ultima_atualizacao).toLocaleDateString("pt-BR", {
     year: "numeric",
     month: "long",
     day: "numeric",
     hour: "2-digit",
     minute: "2-digit"
-  })}</p> </div> ` }), defineScriptVars({ cursos }));
-}, "C:/Users/Meu Computador/Documents/Programa\xE7\xE3o/Agentes/edubot-pro-v2/src/pages/index.astro", void 0);
-
+  })}</p> </div> ` }), defineScriptVars({ displayCourses }));
+}, "C:/Users/Meu Computador/Documents/Programação/Agentes/edubot-pro-v2/src/pages/index.astro", void 0);
 const $$file = "C:/Users/Meu Computador/Documents/Programação/Agentes/edubot-pro-v2/src/pages/index.astro";
 const $$url = "";
 
