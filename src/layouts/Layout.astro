@@ -1,4 +1,6 @@
 ---
+import { Analytics } from '@vercel/analytics/react';
+
 interface Props {
   title: string;
   description?: string;
@@ -126,5 +128,6 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
         </div>
       </div>
     </footer>
+    <Analytics />
   </body>
 </html>
