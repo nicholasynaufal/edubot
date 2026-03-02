@@ -7,7 +7,7 @@ import vercel from '@astrojs/vercel/serverless';
 export default defineConfig({
     site: 'https://edubot-murex.vercel.app',
     integrations: [tailwind(), react()],
-    output: 'server',
+    output: 'hybrid',
     adapter: vercel({
         imageService: true
     }),

@@ -6,7 +6,6 @@ import { jsxs, jsx } from 'react/jsx-runtime';
 import { useState, useEffect } from 'react';
 import 'clsx';
 /* empty css                                 */
-import { GoogleGenAI } from '@google/genai';
 export { renderers } from '../renderers.mjs';
 
 function CourseInteractions({ courseId }) {
@@ -1861,6 +1860,7 @@ var __defProp = Object.defineProperty;
 var __template = (cooked, raw) => __freeze(__defProp(cooked, "raw", { value: __freeze(raw || cooked.slice()) }));
 var _a;
 const $$Astro = createAstro("https://edubot-murex.vercel.app");
+const prerender = false;
 const $$Index = createComponent(async ($$result, $$props, $$slots) => {
   const Astro2 = $$result.createAstro($$Astro, $$props, $$slots);
   Astro2.self = $$Index;
@@ -1870,8 +1870,9 @@ const $$Index = createComponent(async ($$result, $$props, $$slots) => {
   let aiError = null;
   if (aiSearchTerm) {
     try {
-      const apiKey = "AIzaSyAdfRb17TNTFu_htPvnZlw1OG8TkfwN26w";
+      const apiKey = "AIzaSyAheaGsIGksq2WI7xDW-Zom9tni_B4iRZM";
       if (apiKey) {
+        const { GoogleGenAI } = await import('@google/genai');
         const ai = new GoogleGenAI({ apiKey });
         const prompt = `
         O usuário buscou por um curso relacionado a: "${aiSearchTerm}".
@@ -2252,6 +2253,7 @@ const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
     __proto__: null,
     default: $$Index,
     file: $$file,
+    prerender,
     url: $$url
 }, Symbol.toStringTag, { value: 'Module' }));
 

@@ -16,18 +16,6 @@
 			"dest": "_render"
 		},
 		{
-			"src": "^\\/api\\/buscar\\/?$",
-			"dest": "_render"
-		},
-		{
-			"src": "^\\/privacidade\\/?$",
-			"dest": "_render"
-		},
-		{
-			"src": "^\\/sobre\\/?$",
-			"dest": "_render"
-		},
-		{
 			"src": "^\\/$",
 			"dest": "_render"
 		}

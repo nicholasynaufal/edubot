@@ -1,9 +1,9 @@
 ---
+export const prerender = false;
+
 import Layout from '../layouts/Layout.astro';
 import CourseCard from '../components/CourseCard.astro';
 import AdBanner from '../components/AdBanner.astro';
-
-import { GoogleGenAI } from '@google/genai';
 
 // Carregar cursos do JSON
 import coursesData from '../data/cursos.json';
@@ -17,6 +17,7 @@ if (aiSearchTerm) {
   try {
     const apiKey = import.meta.env.GEMINI_API_KEY || process.env.GEMINI_API_KEY;
     if (apiKey) {
+      const { GoogleGenAI } = await import('@google/genai');
       const ai = new GoogleGenAI({ apiKey });
       const prompt = `
         O usuário buscou por um curso relacionado a: "${aiSearchTerm}".
