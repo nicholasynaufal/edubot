@@ -1,0 +1,143 @@
+---
+// Componente de filtros (renderizado no cliente)
+---
+
+<div class="filter-bar bg-white border border-neutral-200 rounded-lg p-6 mb-8">
+  <div class="flex flex-col lg:flex-row gap-4">
+    <!-- Search Input -->
+    <div class="flex-1">
+      <div class="relative">
+        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+          <svg class="h-5 w-5 text-neutral-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+        </div>
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Buscar por curso, instituição ou tag..."
+          class="block w-full pl-10 pr-3 py-2.5 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-sm"
+        />
+      </div>
+    </div>
+    
+    <!-- Filter Buttons -->
+    <div class="flex gap-2">
+      <button
+        data-filter="all"
+        class="filter-btn active px-4 py-2.5 text-sm font-medium rounded-lg transition-colors border border-neutral-300"
+      >
+        📚 Todos
+      </button>
+      <button
+        data-filter="hard"
+        class="filter-btn px-4 py-2.5 text-sm font-medium rounded-lg transition-colors border border-neutral-300"
+      >
+        💻 Hard Skills
+      </button>
+      <button
+        data-filter="soft"
+        class="filter-btn px-4 py-2.5 text-sm font-medium rounded-lg transition-colors border border-neutral-300"
+      >
+        🧠 Soft Skills
+      </button>
+    </div>
+  </div>
+  
+  <!-- Results Counter -->
+  <div class="mt-4 text-sm text-neutral-600">
+    <span id="courseCount">Carregando cursos...</span>
+  </div>
+</div>
+
+<script>
+  // Client-side filtering logic
+  let allCourses: any[] = [];
+  let currentFilter = 'all';
+  let currentSearch = '';
+  
+  function applyFilters() {
+    const filtered = allCourses.filter(curso => {
+      // Category filter
+      const categoryMatch = currentFilter === 'all' ||
+        (currentFilter === 'hard' && curso.categoria === 'Hard Skill') ||
+        (currentFilter === 'soft' && curso.categoria === 'Soft Skill');
+      
+      if (!categoryMatch) return false;
+      
+      // Search filter
+      if (currentSearch) {
+        const searchable = [
+          curso.titulo,
+          curso.instituicao,
+          curso.descricao,
+          ...curso.tags
+        ].join(' ').toLowerCase();
+        
+        return searchable.includes(currentSearch.toLowerCase());
+      }
+      
+      return true;
+    });
+    
+    // Dispatch custom event with filtered courses
+    window.dispatchEvent(new CustomEvent('coursesFiltered', {
+      detail: { courses: filtered }
+    }));
+    
+    // Update counter
+    const counter = document.getElementById('courseCount');
+    if (counter) {
+      counter.textContent = `${filtered.length} de ${allCourses.length} cursos`;
+    }
+  }
+  
+  // Initialize on page load
+  window.addEventListener('coursesLoaded', (e: any) => {
+    allCourses = e.detail.courses;
+    applyFilters();
+  });
+  
+  // Search input handler
+  const searchInput = document.getElementById('searchInput') as HTMLInputElement;
+  if (searchInput) {
+    searchInput.addEventListener('input', (e) => {
+      currentSearch = (e.target as HTMLInputElement).value.trim();
+      applyFilters();
+    });
+  }
+  
+  // Filter buttons handler
+  const filterButtons = document.querySelectorAll('.filter-btn');
+  filterButtons.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const target = e.currentTarget as HTMLButtonElement;
+      const filter = target.dataset.filter || 'all';
+      
+      // Update active state
+      filterButtons.forEach(b => b.classList.remove('active'));
+      target.classList.add('active');
+      
+      currentFilter = filter;
+      applyFilters();
+    });
+  });
+</script>
+
+<style>
+  .filter-btn {
+    background-color: white;
+    color: theme('colors.neutral.700');
+  }
+  
+  .filter-btn:hover {
+    background-color: theme('colors.neutral.50');
+    border-color: theme('colors.primary.DEFAULT');
+  }
+  
+  .filter-btn.active {
+    background-color: theme('colors.primary.DEFAULT');
+    color: white;
+    border-color: theme('colors.primary.DEFAULT');
+  }
+</style>

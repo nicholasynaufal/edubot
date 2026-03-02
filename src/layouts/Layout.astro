@@ -1,0 +1,130 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "Plataforma de curadoria inteligente de cursos profissionais 100% gratuitos com certificação" } = Astro.props;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href={canonicalURL} />
+    
+    <!-- Primary Meta Tags -->
+    <title>{title} | EduBot Pro</title>
+    <meta name="title" content={`${title} | EduBot Pro`} />
+    <meta name="description" content={description} />
+    <meta name="keywords" content="cursos gratuitos, certificação grátis, educação online, hard skills, soft skills, curadoria" />
+    <meta name="author" content="EduBot Pro" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={`${title} | EduBot Pro`} />
+    <meta property="og:description" content={description} />
+    <meta property="og:site_name" content="EduBot Pro" />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalURL} />
+    <meta property="twitter:title" content={`${title} | EduBot Pro`} />
+    <meta property="twitter:description" content={description} />
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "EduBot Pro",
+      "description": description,
+      "url": canonicalURL,
+    })} />
+  </head>
+  
+  <body class="min-h-screen bg-neutral-50 text-neutral-900 font-sans antialiased">
+    <!-- Header -->
+    <header class="border-b border-neutral-200 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+          <a href="/" class="flex items-center space-x-3 group">
+            <div class="w-8 h-8 bg-primary rounded flex items-center justify-center font-mono text-white text-sm font-bold">
+              EP
+            </div>
+            <span class="text-xl font-bold text-neutral-900 group-hover:text-primary transition-colors">
+              EduBot Pro
+            </span>
+          </a>
+          
+          <nav class="hidden md:flex space-x-8">
+            <a href="/" class="text-sm font-medium text-neutral-700 hover:text-primary transition-colors">
+              Cursos
+            </a>
+            <a href="/sobre" class="text-sm font-medium text-neutral-700 hover:text-primary transition-colors">
+              Sobre
+            </a>
+            <a href="/privacidade" class="text-sm font-medium text-neutral-700 hover:text-primary transition-colors">
+              Privacidade
+            </a>
+          </nav>
+        </div>
+      </div>
+    </header>
+    
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <slot />
+    </main>
+    
+    <!-- Footer -->
+    <footer class="border-t border-neutral-200 bg-white mt-24">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div>
+            <div class="flex items-center space-x-3 mb-4">
+              <div class="w-8 h-8 bg-primary rounded flex items-center justify-center font-mono text-white text-sm font-bold">
+                EP
+              </div>
+              <span class="text-lg font-bold text-neutral-900">EduBot Pro</span>
+            </div>
+            <p class="text-sm text-neutral-600">
+              Curadoria inteligente de cursos profissionais gratuitos com certificação.
+            </p>
+          </div>
+          
+          <div>
+            <h3 class="text-sm font-bold text-neutral-900 mb-4">Links</h3>
+            <ul class="space-y-2">
+              <li><a href="/" class="text-sm text-neutral-600 hover:text-primary transition-colors">Cursos</a></li>
+              <li><a href="/sobre" class="text-sm text-neutral-600 hover:text-primary transition-colors">Sobre</a></li>
+              <li><a href="/privacidade" class="text-sm text-neutral-600 hover:text-primary transition-colors">Privacidade</a></li>
+            </ul>
+          </div>
+          
+          <div>
+            <h3 class="text-sm font-bold text-neutral-900 mb-4">Legal</h3>
+            <p class="text-xs text-neutral-600">
+              © 2026 EduBot Pro. Todos os direitos reservados.<br/>
+              Desenvolvido com Astro + Tailwind CSS.
+            </p>
+          </div>
+        </div>
+        
+        <div class="mt-8 pt-8 border-t border-neutral-200 text-center">
+          <p class="text-xs text-neutral-500">
+            Os cursos listados são oferecidos por instituições terceiras. EduBot Pro não é responsável pelo conteúdo dos cursos.
+          </p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
