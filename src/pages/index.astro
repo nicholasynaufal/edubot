@@ -199,9 +199,9 @@ const uniqueCategories = [...new Set(allTags)].sort().slice(0, 10); // Top 10 ca
       
       // Show/hide cards
       const allCards = grid.querySelectorAll('article');
-      allCards.forEach((card, index) => {
-        const curso = cursos[index];
-        const isVisible = filtered.some(c => c.id === curso.id);
+      allCards.forEach((card) => {
+        const id = card.dataset.id;
+        const isVisible = filtered.some(c => c.id === id);
         card.style.display = isVisible ? 'block' : 'none';
       });
     }

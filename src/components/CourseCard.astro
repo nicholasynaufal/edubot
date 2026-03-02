@@ -18,7 +18,7 @@ const { curso } = Astro.props;
 const linkFinal = curso.link_afiliado || curso.link;
 ---
 
-<article class="group bg-white border border-slate-200 rounded-lg hover:shadow-md transition-all duration-200 overflow-hidden">
+<article data-id={curso.id} class="group bg-white border border-slate-200 rounded-lg hover:shadow-md transition-all duration-200 overflow-hidden">
   <!-- Image/Placeholder -->
   <div class="h-48 bg-gradient-to-br from-slate-100 to-slate-200 relative overflow-hidden">
     {curso.imagem ? (
